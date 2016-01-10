@@ -13,7 +13,7 @@ compiler:
   - clang
 
 before_install:
-  - pip install codecov
+  - pip install --user codecov
 
 before_script:
   - cmake .
@@ -31,4 +31,4 @@ script:
     - make doc
 
 after_success:
-  - codecov
+  - .local/bin/codecov
