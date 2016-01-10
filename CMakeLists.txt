@@ -181,7 +181,7 @@ if(CMAKE_SYSTEM_NAME MATCHES Linux)
     # syntax elsewhere.
     message(STATUS "Coverage enabled for (some) tests")
     target_compile_options(isprefix_test
-        PUBLIC --coverage -g)
+        PUBLIC --coverage -g -O0)
     target_link_libraries(isprefix_test
         --coverage)
 else()
@@ -249,7 +249,9 @@ set(rsync_LIB_SRCS
     src/whole.c
     src/blake2b-ref.c)
 
-add_library(rsync SHARED ${rsync_LIB_SRCS})
+add_library(rsync STATIC ${rsync_LIB_SRCS})
+target_compile_options(rsync
+    PRIVATE --coverage -g -O0)
 
 target_link_libraries(rsync
    ${BZIP2_LIBRARIES}
@@ -268,6 +270,10 @@ set(rdiff_SRCS
     src/isprefix.c)
 
 add_executable(rdiff ${rdiff_SRCS})
+target_compile_options(rdiff
+    PUBLIC --coverage -g -O0)
+target_link_libraries(rdiff
+    --coverage)
 
 target_link_libraries(rdiff rsync ${POPT_LIBRARIES})
 
@@ -282,3 +288,5 @@ install(FILES
         DESTINATION include)
 
 message (STATUS "CMAKE_C_FLAGS  = ${CMAKE_C_FLAGS}")
+
+# vim: shiftwidth=4 expandtab
