@@ -176,6 +176,18 @@ add_executable(isprefix_test tests/isprefix_test.c src/isprefix.c)
 
 add_test(NAME isprefix_test COMMAND isprefix_test)
 
+if(CMAKE_SYSTEM_NAME MATCHES Linux)
+    # FIXME: This fails with a link error on OS X, and won't be the right
+    # syntax elsewhere.
+    message(STATUS "Coverage enabled for (some) tests")
+    target_compile_options(isprefix_test
+        PUBLIC --coverage -g)
+    target_link_libraries(isprefix_test
+        --coverage)
+else()
+    message(STATUS "Coverage not yet supported on this platform")
+endif()
+
 add_test(NAME Help COMMAND help.test ${CMAKE_CURRENT_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 add_test(NAME Mutate COMMAND mutate.test ${CMAKE_CURRENT_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 add_test(NAME Signature COMMAND signature.test ${CMAKE_CURRENT_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
