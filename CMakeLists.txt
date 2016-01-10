@@ -119,6 +119,7 @@ site_name(SITE_NAME)
 
 message (STATUS "PROJECT_NAME  = ${PROJECT_NAME}")
 message (STATUS "SITE_NAME  = ${SITE_NAME}")
+message (STATUS "CMAKE_C_COMPILER_ID = ${CMAKE_C_COMPILER_ID}")
 
 # Find POPT
 find_package(POPT REQUIRED)
