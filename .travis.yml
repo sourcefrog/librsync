@@ -3,7 +3,7 @@
 # https://docs.travis-ci.com/user/trusty-ci-environment/
 # Ubuntu Trusty is needed to get a sufficiently fresh CMake
 # as of 2016-01-09 it's in beta.
-sudo: false
+sudo: required
 dist: trusty
 
 language: c
