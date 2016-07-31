@@ -3,6 +3,7 @@ rdiff
 CMakeCache.txt
 CTestTestfile.cmake
 config.h
+delta_read_test
 *.cbp
 librsync-config.h
 librsync.so*
